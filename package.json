@@ -1,0 +1,31 @@
+{
+  "name": "opencord",
+  "version": "1.0.0",
+  "description": "Library for interacting with the Discord API as as user",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "npm run build && node dist/test-simple.js",
+    "example": "npm run build && node dist/example.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "discord",
+    "user",
+    "client",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bottleneck": "^2.19.5",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.3.3"
+  }
+}
