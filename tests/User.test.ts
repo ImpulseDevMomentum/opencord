@@ -34,14 +34,14 @@ describe('User', () => {
       avatar: null
     });
 
-    expect(user.tag).toBe('testuser#0001');
+    expect(user.tag).toBe('0001');
   });
 
   it('should return displayName', () => {
     const userWithGlobal = new User(mockClient, {
       id: '123',
       username: 'testuser',
-      discriminator: '0001',
+      discriminator: '0',
       avatar: null,
       global_name: 'Global Name'
     });
