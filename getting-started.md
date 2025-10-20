@@ -9,10 +9,6 @@ npm run build
 
 ## Getting Your User Token
 
-⚠️ **WARNING**: This is against Discord ToS! Use at your own risk.
-
-### Method 1: Browser DevTools
-
 1. Open Discord in browser (discord.com/app)
 2. Press F12 to open DevTools
 3. Go to "Network" tab
@@ -21,13 +17,7 @@ npm run build
 6. In Headers, find `authorization`
 7. Copy the value
 
-### Method 2: Browser Console
 
-1. Open Discord in browser
-2. Press F12 → Console
-3. Paste:
-```javascript
-(webpackChunkdiscord_app.push([[''],{},e=>{m=[];for(let c in e.c)m.push(e.c[c])}]),m).find(m=>m?.exports?.default?.getToken!==void 0).exports.default.getToken()
 ```
 4. Copy the returned token
 
@@ -43,11 +33,11 @@ const client = new Client({
 });
 
 client.on('ready', (user) => {
-  console.log(`✅ Connected as ${user.tag}`);
+  console.log(`Connected as ${user.tag}`);
 });
 
 client.on('error', (error) => {
-  console.error('❌ Error:', error);
+  console.error('Error:', error);
 });
 
 client.login();

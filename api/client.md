@@ -8,12 +8,6 @@ Main client class for connecting to Discord.
 new Client(options: ClientOptions)
 ```
 
-### Options
-
-| Option | Type | Required | Description |
-|--------|------|----------|-------------|
-| `token` | `string` | ✅ | User token (NOT bot token)|
-
 ### Example
 
 ```typescript
