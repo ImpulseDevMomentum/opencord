@@ -7,6 +7,7 @@
 	<p>
 		<a href=""><img src="httsp://discord.gg/soonithink" alt="Discord server"/></a>
 		<a href=""><img src="npm_v" alt="npm version" /></a>
+		<a href=""><img src="https://impulsedevmomentum.github.io/opencord/" alt="Documentation" /></a>
 	</p>
 </div>
 
