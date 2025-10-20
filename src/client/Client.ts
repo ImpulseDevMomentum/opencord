@@ -5,6 +5,7 @@ import { Gateway } from './Gateway';
 import { RequestManager } from '../fetch';
 import { User, UserData, Guild, GuildData, Channel, ChannelData, Message, MessageData } from '../struct';
 import { Constants } from '../util';
+import { EmptyTokenError, BotTokenError } from '../errors';
 
 export interface ClientOptions {
   token: string;
@@ -23,6 +24,15 @@ export class Client extends EventEmitter {
 
   constructor(options: ClientOptions) {
     super();
+    
+    if (!options.token || options.token.trim() === '') {
+      throw new EmptyTokenError();
+    }
+    
+    if (options.token.startsWith('Bot ') || options.token.startsWith('bot ')) {
+      throw new BotTokenError();
+    }
+    
     this.token = options.token;
     this.intents = options.intents || 0x3FFFF;
     this.api = new RequestManager(this.token);

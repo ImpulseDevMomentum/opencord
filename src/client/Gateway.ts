@@ -3,6 +3,7 @@
 import WebSocket from 'ws';
 import { EventEmitter } from 'events';
 import { Constants } from '../util';
+import { InvalidTokenError } from '../errors';
 
 export interface GatewayOptions {
   token: string;
@@ -12,7 +13,6 @@ export interface GatewayOptions {
 export class Gateway extends EventEmitter {
   private ws: WebSocket | null = null;
   private token: string;
-  private intents: number;
   private sessionId: string | null = null;
   private sequence: number | null = null;
   private heartbeatInterval: NodeJS.Timeout | null = null;
@@ -22,7 +22,6 @@ export class Gateway extends EventEmitter {
   constructor(options: GatewayOptions) {
     super();
     this.token = options.token;
-    this.intents = options.intents || 0x3FFFF;
   }
 
   public async connect(gatewayUrl?: string): Promise<void> {
@@ -42,6 +41,11 @@ export class Gateway extends EventEmitter {
     this.ws.on('close', (code: number, reason: string) => {
       this.emit('debug', `WebSocket closed: ${code} - ${reason}`);
       this.cleanup();
+
+      if (code === 4004) {
+        this.emit('error', new InvalidTokenError());
+        return;
+      }
 
       if (code !== 1000) {
         setTimeout(() => {
