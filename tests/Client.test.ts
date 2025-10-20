@@ -1,4 +1,5 @@
-import { Client, EmptyTokenError, BotTokenError } from '../index';
+import { Client } from '../src/client/Client';
+import { EmptyTokenError, BotTokenError } from '../src/errors';
 
 describe('Client', () => {
   describe('Constructor', () => {

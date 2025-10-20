@@ -5,7 +5,7 @@ import {
   InvalidTokenError,
   NitroRequiredError,
   TODOError
-} from '../index';
+} from '../src/errors';
 
 describe('Errors', () => {
   describe('OpencordError', () => {

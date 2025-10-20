@@ -1,5 +1,5 @@
 import { Guild } from '../src/struct/Guild';
-import { NitroRequiredError, TODOError } from '../index';
+import { NitroRequiredError, TODOError } from '../src/errors';
 
 describe('Guild', () => {
   let mockClient: any;

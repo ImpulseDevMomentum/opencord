@@ -1,4 +1,4 @@
-import { Intents } from '../index';
+import { Intents } from '../src/util/Intents';
 
 describe('Intents', () => {
   it('should have all intent values', () => {
