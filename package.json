@@ -7,8 +7,10 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "npm run build && node dist/test-simple.js",
-    "example": "npm run build && node dist/example.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "docs:dev": "docsify serve docs",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -20,12 +22,16 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "bottleneck": "^2.19.5",
-    "ws": "^8.18.3"
+    "ws": "^8.16.0",
+    "bottleneck": "^2.19.5"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",
     "@types/ws": "^8.5.10",
-    "typescript": "^5.3.3"
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3",
+    "docsify-cli": "^4.4.4"
   }
 }
