@@ -59,7 +59,7 @@ export class Channel extends Base {
 
   public async send(content: string): Promise<Message> {
     const data = await this.client.api.post(Constants.Endpoints.MESSAGES(this.id), {
-      content,
+      content
     });
     return new Message(this.client, data);
   }

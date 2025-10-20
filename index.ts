@@ -7,7 +7,7 @@ export { Gateway } from './src/client/Gateway';
 export type { GatewayOptions } from './src/client/Gateway';
 
 // Errors
-export { DiscordAPIError, DiscordHTTPError } from './src/errors';
+export { DiscordAPIError, DiscordHTTPError, OpencordError, EmptyTokenError, BotTokenError, InvalidTokenError, NitroRequiredError, TODOError } from './src/errors';
 
 // Utilities
 export { Constants, Intents } from './src/util';

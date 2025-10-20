@@ -1,7 +1,7 @@
 'use strict';
 
 import Bottleneck from 'bottleneck';
-import { DiscordAPIError, DiscordHTTPError } from '../errors';
+import { DiscordAPIError, DiscordHTTPError, InvalidTokenError } from '../errors';
 import { Constants } from '../util';
 
 export interface RequestOptions {
@@ -91,6 +91,10 @@ export class RequestManager {
     }
 
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new InvalidTokenError();
+      }
+      
       if (data && data.code) {
         throw new DiscordAPIError(
           data.message || 'Unknown API Error',

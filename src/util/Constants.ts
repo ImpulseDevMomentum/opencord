@@ -8,17 +8,25 @@ export const Constants = {
   
   Endpoints: {
     USER: (userId: string) => `/users/${userId}`,
+    USER_PROFILE: (userId: string, guildId?: string) => 
+      `/users/${userId}/profile${guildId ? `?guild_id=${guildId}` : ''}`,
     CHANNELS: (channelId: string) => `/channels/${channelId}`,
     MESSAGES: (channelId: string) => `/channels/${channelId}/messages`,
     MESSAGE: (channelId: string, messageId: string) => `/channels/${channelId}/messages/${messageId}`,
+    MESSAGE_REACTION: (channelId: string, messageId: string, emoji: string) => `/channels/${channelId}/messages/${messageId}/reactions/${encodeURIComponent(emoji)}/@me`,
+    MESSAGE_REACTION_USER: (channelId: string, messageId: string, emoji: string, userId: string) => `/channels/${channelId}/messages/${messageId}/reactions/${encodeURIComponent(emoji)}/${userId}`,
     GUILDS: (guildId: string) => `/guilds/${guildId}`,
     GUILD_CHANNELS: (guildId: string) => `/guilds/${guildId}/channels`,
     GUILD_MEMBERS: (guildId: string) => `/guilds/${guildId}/members`,
     GUILD_MEMBER: (guildId: string, userId: string) => `/guilds/${guildId}/members/${userId}`,
+    GUILD_BOOST: (guildId: string) => `/guilds/${guildId}/premium/subscriptions`,
     TYPING: (channelId: string) => `/channels/${channelId}/typing`,
+    PIN_MESSAGE: (channelId: string, messageId: string) => `/channels/${channelId}/pins/${messageId}`,
+    UNPIN_MESSAGE: (channelId: string, messageId: string) => `/channels/${channelId}/pins/${messageId}`,
     ME: '/users/@me',
     ME_GUILDS: '/users/@me/guilds',
     ME_CHANNELS: '/users/@me/channels',
+    CREATE_DM: '/users/@me/channels',
     GATEWAY: '/gateway',
   },
 
