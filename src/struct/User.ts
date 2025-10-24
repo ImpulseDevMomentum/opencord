@@ -5,6 +5,8 @@
 
 import { Base } from './Base';
 import type { IClient } from '../client/ClientTypes';
+import { Guild } from './Guild';
+import { Constants } from '../util';
 
 export interface GuildMemberData {
   avatar: string | null;
@@ -43,6 +45,7 @@ export interface UserData {
   accent_color?: number | null;
   bio?: string;
   public_flags?: number;
+  mutual_guilds?: string[];
   premium_type?: number;
   premium_since?: string | null;
   legacy_username?: string;
@@ -68,13 +71,22 @@ export class User extends Base {
   public legacyUsername: string | null;
   public badges: BadgeData[];
   public guildMember: GuildMemberData | null;
-
+  public mutualGuilds: Map<string, Guild>;
   constructor(client: IClient, data: UserData) {
     super(client);
     this.id = data.id;
     this.username = data.username;
     this.discriminator = data.discriminator;
     this.avatar = data.avatar;
+    this.mutualGuilds = new Map();
+    if (data.mutual_guilds) {
+      for (const mutualGuildData of data.mutual_guilds) {
+        const guild = this.client.guilds.get(mutualGuildData);
+        if (guild) {
+          this.mutualGuilds.set(guild.id, guild);
+        }
+      }
+    }
     this.bot = data.bot || false;
     this.system = data.system || false;
     this.globalName = data.global_name || null;
@@ -91,7 +103,7 @@ export class User extends Base {
   }
 
   public get tag(): string {
-    return `${this.discriminator}`; // tho this will always return #0, added for consitebcy
+    return `${this.discriminator}`; // tho this will always return #0, added for consistency
   }
 
   public get displayName(): string {
@@ -154,5 +166,51 @@ export class User extends Base {
 
   public toString(): string {
     return `<@${this.id}>`;
+  }
+
+  public async getMutualGuilds(): Promise<Guild[]> {
+    if (this.mutualGuilds.size > 0) {
+      return Array.from(this.mutualGuilds.values());
+    }
+
+    const profileData = await this.client.api.get(Constants.Endpoints.USER_PROFILE(this.id));
+    
+    if (profileData.mutual_guilds && Array.isArray(profileData.mutual_guilds)) {
+      const mutualGuilds: Guild[] = [];
+      
+      for (const mutualGuildData of profileData.mutual_guilds) {
+        let guild = this.mutualGuilds.get(mutualGuildData.id);
+        
+        if (!guild) {
+          try {
+            guild = await this.client.guilds.get(mutualGuildData.id);
+            if (guild) {
+              this.mutualGuilds.set(guild.id, guild);
+            }
+          } catch (error) {
+            continue;
+          }
+        }
+        
+        if (guild) {
+          mutualGuilds.push(guild);
+        }
+      }
+      
+      for (const guild of mutualGuilds) {
+        this.mutualGuilds.set(guild.id, guild);
+      }
+      
+      const result = Array.from(this.mutualGuilds.values());
+      (result as any).Id = () => profileData.mutual_guilds.map((guild: any) => guild.id);
+      (result as any).Count = () => profileData.mutual_guilds.length;
+      
+      return result;
+    }
+    
+    const emptyResult: any = [];
+    emptyResult.Id = () => [];
+    emptyResult.Count = () => 0;
+    return emptyResult;
   }
 }

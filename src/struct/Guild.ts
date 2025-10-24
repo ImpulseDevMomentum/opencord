@@ -151,6 +151,42 @@ export class Guild extends Base {
     throw new TODOError();
   }
 
+  public async getGuildProfile(): Promise<Guild> {
+    const data = await this.client.api.get(Constants.Endpoints.GUILDS(this.id));
+    
+    this.name = data.name;
+    this.icon = data.icon;
+    this.ownerId = data.owner_id;
+    this.region = data.region;
+    this.memberCount = data.member_count;
+    this.onlineCount = data.online_count;
+    this.description = data.description;
+    this.banner = data.banner_hash || data.custom_banner_hash || null;
+    this.customBanner = data.custom_banner_hash || null;
+    this.tag = data.tag;
+    this.badge = data.badge;
+    this.badgeColorPrimary = data.badge_color_primary;
+    this.badgeColorSecondary = data.badge_color_secondary;
+    this.features = data.features || [];
+    this.boostCount = data.premium_subscription_count || 0;
+    this.boostTier = data.premium_tier || 0;
+    this.visibility = data.visibility;
+    
+    const result = this as any;
+    result.Id = () => this.id;
+    result.Name = () => this.name;
+    result.OwnerId = () => this.ownerId;
+    result.MemberCount = () => this.memberCount;
+    result.BoostCount = () => this.boostCount;
+    result.BoostTier = () => this.boostTier;
+    result.IsVerified = () => this.isVerified;
+    result.IsPartnered = () => this.isPartnered;
+    result.HasVanityURL = () => this.hasVanityURL;
+    result.IsDiscoverable = () => this.isDiscoverable;
+    
+    return result;
+  }
+
   public toString(): string {
     return this.name;
   }
