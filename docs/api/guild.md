@@ -151,6 +151,28 @@ await guild.buyBoost(1);
 **Throws:**
 - `TODOError` - Feature not implemented yet
 
+### `getGuildProfile()`
+
+Fetch complete guild profile with all details and helper methods.
+
+```typescript
+const guildProfile = await guild.getGuildProfile();
+```
+
+**Returns:** `Promise<Guild>` - Guild object with additional helper methods
+
+**Helper Methods:**
+- `Id()` - Returns guild ID
+- `Name()` - Returns guild name
+- `OwnerId()` - Returns owner user ID
+- `MemberCount()` - Returns member count
+- `BoostCount()` - Returns boost count
+- `BoostTier()` - Returns boost tier (0-3)
+- `IsVerified()` - Returns if guild is verified
+- `IsPartnered()` - Returns if guild is partnered
+- `HasVanityURL()` - Returns if guild has vanity URL
+- `IsDiscoverable()` - Returns if guild is discoverable
+
 ## Example
 
 ```typescript
