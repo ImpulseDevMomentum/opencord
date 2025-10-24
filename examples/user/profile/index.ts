@@ -40,7 +40,6 @@ client.on('ready', async () => {
     //     console.log(`Roles: ${targetUser.guildMember.roles.length}`);
     //     console.log(`Bio: ${targetUser.guildMember.bio || 'None'}`);
     // }
-    
 
     // banner url
     // if (targetUser.bannerURL()) {
