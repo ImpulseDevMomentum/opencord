@@ -4,6 +4,7 @@ import { Base } from './Base';
 import { User, UserData } from './User';
 import type { IClient } from '../client/ClientTypes';
 import { Constants } from '../util';
+import { InvalidCrossPostChannelError } from '../errors';
 
 export interface MessageData {
   id: string;
@@ -177,5 +178,18 @@ export class Message extends Base {
     return new Message(this.client, data);
   }
 
-  // TODO: crosspoint (send messages on annoucments channels), bulk message deletion, tread creation
+  public async crosspost(targetChannelId?: string): Promise<Message> {
+    try {
+      const channelId = targetChannelId || this.channelId;
+      const data = await this.client.api.post(
+        Constants.Endpoints.CROSSPOST_MESSAGE(channelId, this.id),
+        {}
+      );
+      return new Message(this.client, data);
+    } catch (error) {
+      throw new InvalidCrossPostChannelError();
+    }
+  }
+  
+  // TODO: bulk message deletion, tread creation
 }

@@ -11,15 +11,10 @@ new Client(options: ClientOptions)
 ### Example
 
 ```typescript
-import { Client, Intents } from 'opencord';
+import { Client } from 'opencord';
 
 const client = new Client({
-  token: 'YOUR_USER_TOKEN',
-  intents: Intents.combine(
-    Intents.GUILDS,
-    Intents.GUILD_MESSAGES,
-    Intents.MESSAGE_CONTENT
-  )
+  token: 'YOUR_USER_TOKEN'
 });
 ```
 

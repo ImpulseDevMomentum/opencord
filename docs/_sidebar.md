@@ -9,6 +9,7 @@
   - [Channel](api/channel.md)
   - [Guild](api/guild.md)
   - [User](api/user.md)
+  - [Commands](api/command.md)
   - [Gateway](api/gateway.md)
 
 - Features

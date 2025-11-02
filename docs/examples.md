@@ -152,20 +152,16 @@ client.login().catch(error => {
 });
 ```
 
-## Custom Intents
+## Simple Connection
 
 ```typescript
-import { Client, Intents } from 'opencord';
+import { Client } from 'opencord';
 
 const client = new Client({
-  token: 'TOKEN',
-  intents: Intents.combine(
-    Intents.GUILDS,
-    Intents.GUILD_MESSAGES,
-    Intents.DIRECT_MESSAGES,
-    Intents.MESSAGE_CONTENT
-  )
+  token: 'YOUR_USER_TOKEN'
 });
+
+client.login();
 ```
 
 ## Message Logger

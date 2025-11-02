@@ -17,6 +17,8 @@ export const Constants = {
     MESSAGE_REACTION_USER: (channelId: string, messageId: string, emoji: string, userId: string) => `/channels/${channelId}/messages/${messageId}/reactions/${encodeURIComponent(emoji)}/${userId}`,
     GUILDS: (guildId: string) => `/guilds/${guildId}`,
     GUILD_CHANNELS: (guildId: string) => `/guilds/${guildId}/channels`,
+    CROSSPOST_MESSAGE: (channelId: string, messageId: string) => 
+      `/channels/${channelId}/messages/${messageId}/crosspost`,
     GUILD_MEMBERS: (guildId: string) => `/guilds/${guildId}/members`,
     GUILD_MEMBER: (guildId: string, userId: string) => `/guilds/${guildId}/members/${userId}`,
     GUILD_BOOST: (guildId: string) => `/guilds/${guildId}/premium/subscriptions`,
@@ -28,6 +30,8 @@ export const Constants = {
     ME_CHANNELS: '/users/@me/channels',
     CREATE_DM: '/users/@me/channels',
     GATEWAY: '/gateway',
+    INTERACTIONS: '/interactions',
+    GUILD_APPLICATION_COMMAND_INDEX: (guildId: string) => `/guilds/${guildId}/application-command-index`,
   },
 
   OPCodes: {

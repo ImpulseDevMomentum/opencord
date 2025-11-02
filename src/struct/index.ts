@@ -9,3 +9,5 @@ export { Channel, ChannelType } from './Channel';
 export type { ChannelData } from './Channel';
 export { Guild } from './Guild';
 export type { GuildData } from './Guild';
+export { CommandOptionType, CommandType } from './Commands';
+export type { CommandData, CommandOption, CommandOptionChoice, ApplicationCommandResponse } from './Commands';

@@ -7,14 +7,17 @@ export { Gateway } from './src/client/Gateway';
 export type { GatewayOptions } from './src/client/Gateway';
 
 // Errors
-export { DiscordAPIError, DiscordHTTPError, OpencordError, EmptyTokenError, BotTokenError, InvalidTokenError, NitroRequiredError, TODOError } from './src/errors';
+export { DiscordAPIError, DiscordHTTPError, OpencordError, EmptyTokenError, BotTokenError, InvalidTokenError, NitroRequiredError, TODOError, CommandNotFoundError, CommandMetadataNotFoundError } from './src/errors';
 
 // Utilities
-export { Constants, Intents } from './src/util';
+export { Constants, Permissions, PermissionsBits, eCommand, createCommandOption } from './src/util';
 
 // Structures
-export { User, Message, Channel, Guild, ChannelType } from './src/struct';
-export type { UserData, MessageData, ChannelData, GuildData } from './src/struct';
+export { User, Message, Channel, Guild, ChannelType, CommandOptionType, CommandType } from './src/struct';
+export type { UserData, MessageData, ChannelData, GuildData, CommandData, CommandOption, CommandOptionChoice, ApplicationCommandResponse } from './src/struct';
+
+// Builders
+export { InteractionBuilder } from './src/builders';
 
 // HTTP
 export { RequestManager } from './src/fetch';

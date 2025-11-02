@@ -9,6 +9,7 @@ Complete API documentation for OpenCord.
 - [Channel](channel.md) - Channel operations
 - [Guild](guild.md) - Guild/Server operations
 - [User](user.md) - User and profile data
+- [Commands](command.md) - Slash commands and interactions
 - [Gateway](gateway.md) - WebSocket gateway
 
 ## Utilities
@@ -27,6 +28,9 @@ All errors extend `OpencordError`:
 - `TODOError` - Feature not implemented yet
 - `DiscordAPIError` - Discord API returned an error
 - `DiscordHTTPError` - HTTP error from Discord
+- `CommandNotFoundError` - Command not found in guild
+- `CommandMetadataNotFoundError` - Command metadata not found
+- `CrosspostError` - Failed to crosspost message
 
 ## Type Definitions
 
@@ -39,6 +43,10 @@ import type {
   ChannelData, 
   GuildData,
   GuildMemberData,
-  BadgeData
+  BadgeData,
+  CommandData,
+  CommandOption,
+  CommandOptionChoice,
+  ApplicationCommandResponse
 } from 'opencord';
 ```

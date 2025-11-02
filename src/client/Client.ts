@@ -9,7 +9,6 @@ import { EmptyTokenError, BotTokenError } from '../errors';
 
 export interface ClientOptions {
   token: string;
-  intents?: number;
 }
 
 export class Client extends EventEmitter {
@@ -20,7 +19,6 @@ export class Client extends EventEmitter {
   public guilds: Map<string, Guild> = new Map();
   public channels: Map<string, Channel> = new Map();
   public users: Map<string, User> = new Map();
-  private intents: number;
 
   constructor(options: ClientOptions) {
     super();
@@ -34,11 +32,9 @@ export class Client extends EventEmitter {
     }
     
     this.token = options.token;
-    this.intents = options.intents || 0x3FFFF;
     this.api = new RequestManager(this.token);
     this.gateway = new Gateway({
       token: this.token,
-      intents: this.intents,
     });
 
     this.setupGatewayListeners();

@@ -1,4 +1,5 @@
 'use strict';
 
 export { Constants } from './Constants';
-export { Intents } from './Intents';
+export { Permissions, PermissionsBits } from './Permissions';
+export { eCommand, createCommandOption } from './useCommand';

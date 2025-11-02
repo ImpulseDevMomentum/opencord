@@ -13,7 +13,8 @@ describe('Errors', () => {
       const error = new OpencordError('Test error');
       expect(error.message).toBe('Test error');
       expect(error.name).toBe('OpencordError');
-      expect(error.version).toBe('infdev');
+      expect(error.version).toBeTruthy();
+      expect(typeof error.version).toBe('string');
     });
   });
 

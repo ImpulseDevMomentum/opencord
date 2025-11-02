@@ -22,11 +22,6 @@ describe('Client', () => {
       expect(client.channels).toBeInstanceOf(Map);
       expect(client.users).toBeInstanceOf(Map);
     });
-
-    it('should use default intents when not provided', () => {
-      const client = new Client({ token: 'valid_token' });
-      expect((client as any).intents).toBe(0x3FFFF);
-    });
   });
 
   describe('Methods', () => {

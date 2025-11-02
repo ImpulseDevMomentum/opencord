@@ -7,7 +7,6 @@ import { InvalidTokenError } from '../errors';
 
 export interface GatewayOptions {
   token: string;
-  intents?: number;
 }
 
 export class Gateway extends EventEmitter {
