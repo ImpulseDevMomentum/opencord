@@ -55,11 +55,10 @@ node dist/test.js
 OpenCord is written in TypeScript and has full type support:
 
 ```typescript
-import { Client, Message, User, Intents } from './dist/index';
+import { Client, Message, User } from './dist/index';
 
 const client = new Client({
-  token: process.env.DISCORD_TOKEN!,
-  intents: Intents.ALL
+  token: process.env.DISCORD_TOKEN!
 });
 
 client.on('messageCreate', (message: Message) => {

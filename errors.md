@@ -117,6 +117,38 @@ try {
 }
 ```
 
+### `CommandNotFoundError`
+
+Thrown when a command is not found in the guild.
+
+```typescript
+import { CommandNotFoundError } from 'opencord';
+
+try {
+    await commands.execute('nonexistent', 'GUILD_ID', 'CHANNEL_ID');
+} catch (error) {
+    if (error instanceof CommandNotFoundError) {
+        console.error('Command not found in this guild');
+    }
+}
+```
+
+### `CommandMetadataNotFoundError`
+
+Thrown when command metadata cannot be retrieved.
+
+```typescript
+import { CommandMetadataNotFoundError } from 'opencord';
+
+try {
+    await commands.execute('ban', 'GUILD_ID', 'CHANNEL_ID');
+} catch (error) {
+    if (error instanceof CommandMetadataNotFoundError) {
+        console.error('Could not retrieve command metadata');
+    }
+}
+```
+
 ## Common Error Codes
 
 | Code | Description |
