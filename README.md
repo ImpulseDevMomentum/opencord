@@ -13,7 +13,7 @@
 
 # OpenCord
 
-A powerful TypeScript library for interacting with Discord as a user account.
+A powerful TypeScript library for interacting with Discord as a user. 
 
 ## Installation
 
